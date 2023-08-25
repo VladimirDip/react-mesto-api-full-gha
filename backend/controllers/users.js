@@ -164,6 +164,7 @@ const signout = (_, res) => {
   res.clearCookie('jwt').send({message: 'Выход'});
 };
 
+
 module.exports = {
   getUsers,
   getUserById,
