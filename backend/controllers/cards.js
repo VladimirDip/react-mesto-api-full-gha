@@ -4,8 +4,8 @@ const BadRequest = require('../errors/badRequestErrors');
 const Forbidden = require('../errors/forbiddenErrors');
 
 const createCard = (req, res, next) => {
-  const {name, link} = req.body;
-  Card.create({name, link, owner: req.user._id})
+  const { name, link } = req.body;
+  Card.create({ name, link, owner: req.user._id })
     .then((card) => {
       res.status(201).send(card);
     })
@@ -21,11 +21,10 @@ const createCard = (req, res, next) => {
 const getCards = (req, res, next) => {
   Card.find({})
     .then((cards) => {
-      res.send({cards});
+      res.send({ cards });
     })
     .catch(next);
 };
-
 
 const deleteCard = (req, res, next) => {
   Card.findById(req.params.cardId)
@@ -37,7 +36,7 @@ const deleteCard = (req, res, next) => {
       if (req.user._id === owner) {
         Card.deleteOne(card)
           .then(() => {
-            res.send({card});
+            res.send({ card });
           });
       } else {
         throw new Forbidden('Невозможно удалить карточку');
@@ -53,11 +52,10 @@ const deleteCard = (req, res, next) => {
 };
 
 const likeCard = (req, res, next) => {
-
   Card.findByIdAndUpdate(
     req.params.cardId,
-    {$addToSet: {likes: req.user._id}},
-    {new: true},
+    { $addToSet: { likes: req.user._id } },
+    { new: true },
   )
     .orFail(() => {
       throw new NotFound('Передан несуществующий _id карточки');
@@ -77,8 +75,8 @@ const likeCard = (req, res, next) => {
 const dislikeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.cardId,
-    {$pull: {likes: req.user._id}},
-    {new: true},
+    { $pull: { likes: req.user._id } },
+    { new: true },
   )
     .orFail(() => {
       throw new NotFound('Передан несуществующий _id карточки');

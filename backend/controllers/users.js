@@ -5,7 +5,7 @@ const NotFound = require('../errors/notFoundErrors');
 const Conflicted = require('../errors/confictErrors');
 const BadRequest = require('../errors/badRequestErrors');
 
-const {NODE_ENV, JWT_SECRET} = process.env;
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const createUser = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
@@ -37,20 +37,22 @@ const createUser = (req, res, next) => {
 };
 
 const login = (req, res, next) => {
-  const {email, password} = req.body;
+  const { email, password } = req.body;
 
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({_id: user._id},
+      const token = jwt.sign(
+        { _id: user._id },
         NODE_ENV === 'production' ? JWT_SECRET : 'my-secret-key',
-        {expiresIn: '7d'});
+        { expiresIn: '7d' },
+      );
       res
         .cookie('jwt', token, {
           maxAge: 7 * 24 * 60 * 60,
           httpOnly: true,
           sameSite: true,
         })
-        .send({token})
+        .send({ token })
         .end();
     })
     .catch(next);
@@ -59,13 +61,13 @@ const login = (req, res, next) => {
 const getUsers = (req, res, next) => {
   User.find({})
     .then((users) => {
-      res.send({users});
+      res.send({ users });
     })
     .catch(next);
 };
 
 const getUserById = (req, res, next) => {
-  const {userId} = req.params;
+  const { userId } = req.params;
 
   User.findById(userId)
     .orFail(() => {
@@ -97,7 +99,7 @@ const getCurrentUser = (req, res, next) => {
       throw new NotFound('Пользователь по указанному _id не найден');
     })
     .then((user) => {
-      res.send({user});
+      res.send({ user });
     })
     .catch((e) => {
       if (e.name === 'CastError') {
@@ -109,10 +111,10 @@ const getCurrentUser = (req, res, next) => {
 };
 
 const updateUser = (req, res, next) => {
-  const {name, about} = req.body;
+  const { name, about } = req.body;
   User.findByIdAndUpdate(
     req.user._id,
-    {name, about},
+    { name, about },
     {
       new: true,
       runValidators: true,
@@ -135,10 +137,10 @@ const updateUser = (req, res, next) => {
 };
 
 const updateAvatar = (req, res, next) => {
-  const {avatar} = req.body;
+  const { avatar } = req.body;
   return User.findByIdAndUpdate(
     req.user._id,
-    {avatar},
+    { avatar },
     {
       new: true,
       runValidators: true,
@@ -161,9 +163,8 @@ const updateAvatar = (req, res, next) => {
 };
 
 const signout = (_, res) => {
-  res.clearCookie('jwt').send({message: 'Выход'});
+  res.clearCookie('jwt').send({ message: 'Выход' });
 };
-
 
 module.exports = {
   getUsers,
