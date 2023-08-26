@@ -94,7 +94,7 @@ export class Api {
 }
 
 const api = new Api({
-    baseUrl: 'https://api.dip.nomoredomains.ru',
+    baseUrl: 'https://api.dip.nomoredomainsicu.ru',
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",

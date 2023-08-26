@@ -1,6 +1,6 @@
 const allowedCors = [
-  'http://dip.nomoredomains.ru',
-  'https://dip.nomoredomains.ru',
+  'http://dip.nomoredomainsicu.ru',
+  'https://dip.nomoredomainsicu.ru',
   'http://localhost:3000',
   'https://localhost:3000',
 ];

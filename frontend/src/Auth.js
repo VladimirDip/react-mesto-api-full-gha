@@ -1,4 +1,4 @@
-export const BASE_URL = "https://api.dip.nomoredomains.ru";
+export const BASE_URL = "https://api.dip.nomoredomainsicu.ru";
 
 class AuthApi {
     getResponseData = (res) => {
