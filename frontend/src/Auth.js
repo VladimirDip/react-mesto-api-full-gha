@@ -1,4 +1,4 @@
-export const BASE_URL = "https://api.dip.nomoredomains.sbs";
+export const BASE_URL = "https://api.dip.nomoredomains.ru";
 
 class AuthApi {
     getResponseData = (res) => {
@@ -12,7 +12,7 @@ class AuthApi {
         return fetch(`${BASE_URL}/signup`, {
             method: "POST",
             headers: {
-                "Accept": "application/json",
+                // "Accept": "application/json",
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({password, email}),
@@ -26,7 +26,7 @@ class AuthApi {
         return fetch(`${BASE_URL}/signin`, {
             method: "POST",
             headers: {
-                "Accept": "application/json",
+                // "Accept": "application/json",
                 "Content-Type": "application/json",
             },
             credentials: 'include',
