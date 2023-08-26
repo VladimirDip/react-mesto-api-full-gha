@@ -94,7 +94,7 @@ export class Api {
 }
 
 const api = new Api({
-    baseUrl: 'http://localhost:4000',
+    baseUrl: 'https://api.dip.nomoredomains.sbs',
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
