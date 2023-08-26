@@ -3,8 +3,6 @@ const allowedCors = [
   'https://dip.nomoredomainsicu.ru',
   'http://localhost:3000',
   'https://localhost:3000',
-  'http://dip.nomoredomainsicu.ru/',
-  'https://dip.nomoredomainsicu.ru/',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
