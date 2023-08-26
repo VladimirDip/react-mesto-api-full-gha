@@ -1,5 +1,6 @@
 export const BASE_URL = "https://api.dip.nomoredomainsicu.ru";
 
+
 class AuthApi {
     getResponseData = (res) => {
         if (!res.ok) {
