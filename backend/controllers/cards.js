@@ -26,6 +26,7 @@ const getCards = (req, res, next) => {
     .catch(next);
 };
 
+
 const deleteCard = (req, res, next) => {
   Card.findById(req.params.cardId)
     .orFail(() => {
