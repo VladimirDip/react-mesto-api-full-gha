@@ -280,7 +280,7 @@ function App() {
         if (loggedIn) {
             Promise.all([api.getUserData(), api.getInitialCards()])
                 .then(([userData, cardsData]) => {
-                    const {name: name, about: description, ...rest} = userData.user;
+                    const {name, about: description, ...rest} = userData.user;
                     const card = cardsData.cards.map((item) => {
                         return {
                             src: item.link,
