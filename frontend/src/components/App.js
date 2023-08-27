@@ -272,8 +272,10 @@ function App() {
     }, []);
 
     function signOut() {
-        navigate("/sign-up");
-        setLoggedIn(false);
+        auth.logout();
+        navigate('/sign-up');
+        setLoggedIn (false);
+        setCurrentUser('');
     }
 
     useEffect(() => {
@@ -303,7 +305,7 @@ function App() {
         <div className="page__container">
             <CurrentUserContext.Provider value={currentUser}>
                 <Header>
-                    <NavBar loggedIn={loggedIn} email={email} signOut={signOut}/>
+                    <NavBar loggedIn={loggedIn} email={currentUser.email} signOut={signOut}/>
                 </Header>
                 <Routes>
                     <Route

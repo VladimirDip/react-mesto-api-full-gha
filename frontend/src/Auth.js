@@ -1,4 +1,5 @@
 export const BASE_URL = "https://api.dip.nomoredomainsicu.ru";
+// export const BASE_URL = "http://localhost:3000";
 
 
 class AuthApi {
@@ -44,6 +45,18 @@ class AuthApi {
         //     return data;
         // });
     };
+
+        logout = () => {
+        return fetch(`${BASE_URL}/signout`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: "include",
+        })
+            .then()
+            .catch(err => console.log(err))
+    }
 
     /*    tokenCheck = (token) => {
             //console.log(token)
